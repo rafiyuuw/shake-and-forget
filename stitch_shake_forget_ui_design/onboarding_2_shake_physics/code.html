@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed": "#1f0060", "surface-dim": "#dfd9d1", "surface-container-highest": "#e7e2d9", "surface-container-lowest": "#ffffff", "on-background": "#1d1b16", "tertiary-container": "#8e6b00", "surface-container": "#f3ede4", "surface-tint": "#6540d5", "tertiary-fixed-dim": "#edc157", "inverse-primary": "#ccbeff", "on-error-container": "#93000a", "on-primary": "#ffffff", "tertiary": "#705400", "on-surface-variant": "#484554", "primary-container": "#7755e8", "on-error": "#ffffff", "surface-container-high": "#ede7df", "on-surface": "#1d1b16", "inverse-surface": "#32302a", "primary-fixed": "#e7deff", "on-tertiary-fixed-variant": "#5b4300", "on-tertiary-fixed": "#251a00", "tertiary-fixed": "#ffdf9b", "inverse-on-surface": "#f6f0e7", "secondary-container": "#fd6f8b", "on-primary-fixed-variant": "#4c20bc", "error-container": "#ffdad6", "outline-variant": "cac3d7", "surface": "#fff9f0", "primary": "#5e38ce", "on-tertiary": "#ffffff", "surface-variant": "#e7e2d9", "on-secondary-container": "#700027", "primary-fixed-dim": "#ccbeff", "error": "#ba1a1a", "surface-bright": "#fff9f0", "surface-container-low": "#f9f3ea", "secondary-fixed-dim": "#ffb2bc", "on-secondary": "#ffffff", "on-secondary-fixed": "#400013", "on-primary-container": "#f9f3ff", "outline": "#797586", "on-secondary-fixed-variant": "#8a1638", "secondary-fixed": "#ffd9dd", "background": "#fff9f0", "secondary": "#aa304e", "on-tertiary-container": "#fff4e4" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "space-md": "1rem", "space-xl": "2.25rem", "space-xs": "0.25rem", "gutter": "1rem", "space-lg": "1.5rem", "margin": "1.25rem", "space-sm": "0.5rem" }, "fontFamily": { "label-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"] }, "fontSize": { "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "800" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "700" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800" }], "title-md": ["18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "700" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "display-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "800" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100vh;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><main class="flex flex-col flex-1 relative w-full bg-surface pt-safe pb-safe"><div class="flex flex-col w-full px-margin pb-space-lg select-none">
+<!-- Top Navigation & Progress -->
+<div class="flex items-center justify-between pt-space-sm mb-space-md">
+<button aria-label="Go back" class="w-11 h-11 rounded-full bg-surface-container flex items-center justify-center text-on-surface shadow-sm active:translate-y-0.5 transition-all" type="button">
+<span class="material-symbols-outlined text-title-md">arrow_back</span>
+</button>
+<!-- 3-Step Pill Progress -->
+<div class="flex items-center space-x-2 bg-surface-container-high px-3.5 py-1.5 rounded-full shadow-inner">
+<div class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/30"></div>
+<div class="w-7 h-2.5 rounded-full bg-primary shadow-sm transition-all duration-300"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/30"></div>
+</div>
+<button class="px-3.5 py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-on-surface bg-surface-container active:scale-95 transition-all" type="button">
+      Skip
+    </button>
+</div>
+<!-- Hero Visual Stage -->
+<div class="relative w-full flex flex-col items-center justify-center my-space-xs">
+<!-- Ambient Kinetic Halo Shapes -->
+<div class="absolute -top-3 -left-2 w-16 h-16 rounded-full bg-secondary-container/20 blur-xl pointer-events-none"></div>
+<div class="absolute -bottom-4 -right-2 w-20 h-20 rounded-full bg-primary-container/25 blur-xl pointer-events-none"></div>
+<!-- Shaking Phone Image Container with Tactile Physics Frame -->
+<div class="relative w-full max-w-[280px] aspect-square flex items-center justify-center cursor-pointer transition-transform duration-100 ease-out" id="kineticHeroBox">
+<!-- Floating Toy-like Micro Badges -->
+<div class="absolute -top-1 -right-1 z-20 bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full shadow-md flex items-center gap-1 -rotate-6 animate-pulse">
+<span class="material-symbols-outlined text-sm">vibration</span>
+<span>SHAKE ME</span>
+</div>
+<div class="absolute -bottom-2 -left-2 z-20 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full shadow-sm flex items-center gap-1 rotate-3">
+<span class="material-symbols-outlined text-sm">casino</span>
+<span>HAPTICS ON</span>
+</div>
+<!-- Main Visual Placeholder Tagged with DATA:IMAGE:IMAGE_20 -->
+<div class="w-full h-full rounded-3xl overflow-hidden bg-surface-container-low shadow-xl p-2 relative flex items-center justify-center">
+<img alt="3D Shaking phone hero with cartoon dice and playful zigzag motion lines" class="w-full h-full object-contain rounded-2xl pointer-events-none drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaupf0Q8c1Ss7Tff7_qaVedxP-XjFc-T0xNeBRoClVa_uim_ETETDwC9TmNfdjHPClAQkUmxsDn478PSSooc--dxEGg_MecCxiO6KyD_xxlknrqfaKAirQUywHSF6gi3R2p0-IxiPx6rba4bEa-yNV2aAZB58yLvAeKiRNKz0I5-SbkIZokl8jB_L1ARujAKk_M0a1LI6NZmr03EBz5l7Qypigk585avKpDXInuIM"/>
+</div>
+</div>
+</div>
+<!-- Main Narrative Header -->
+<div class="text-center mt-space-sm mb-space-md">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm mb-space-xs uppercase tracking-wider">
+<span class="material-symbols-outlined text-xs">gesture</span>
+<span>Step 2 of 3</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+      Just Give It a Shake! 📱💨
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5 px-1">
+      Pick any category or custom list, hold your phone, and give it a firm flick. Our physics engine randomizer spins your choices.
+    </p>
+</div>
+<!-- Interactive Sensory Capability Card -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-md space-y-3 mb-space-lg">
+<!-- Item 1: Motion Sensor -->
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-2xl bg-primary-fixed flex items-center justify-center text-primary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-headline-md">speed</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface leading-tight">Motion Sensor &amp; Gyro Ready</p>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Calibrated flick sensitivity</p>
+</div>
+<span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+</div>
+<!-- Item 2: Haptic Vibration -->
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-2xl bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-headline-md">graphic_eq</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface leading-tight">Crisp Haptic Vibration &amp; SFX</p>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Tactile rattle on every wobble</p>
+</div>
+<span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+</div>
+<!-- Item 3: Manual Fallback -->
+<div class="flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-2xl bg-tertiary-fixed flex items-center justify-center text-tertiary flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-headline-md">touch_app</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-lg text-label-lg text-on-surface leading-tight">Manual Tap Backup</p>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Silent rolling for quiet rooms</p>
+</div>
+<span class="material-symbols-outlined text-primary text-xl flex-shrink-0">check_circle</span>
+</div>
+</div>
+<!-- Bottom Primary CTA Deck -->
+<div class="flex flex-col gap-2.5 mt-auto">
+<button class="w-full h-14 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg shadow-lg flex items-center justify-center gap-2 active:translate-y-1 active:shadow-sm transition-all duration-150" id="nextStepBtn" type="button">
+<span>Next: Lock In &amp; Celebrate</span>
+<span class="material-symbols-outlined text-title-md">arrow_forward</span>
+</button>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant/80">
+      Analysis paralysis ends in 1 more step ✨
+    </p>
+</div>
+</div>
+<script>
+  (() => {
+    const heroBox = document.getElementById('kineticHeroBox');
+    const nextBtn = document.getElementById('nextStepBtn');
+
+    if (!heroBox) return;
+
+    let isShaking = false;
+
+    // Playful haptic wobble interaction on click/tap
+    const triggerWobble = () => {
+      if (isShaking) return;
+      isShaking = true;
+
+      // Gentle navigator vibrate if permitted
+      if (typeof navigator !== 'undefined' && navigator.vibrate) {
+        navigator.vibrate([30, 40, 30, 40, 50]);
+      }
+
+      const shakes = [
+        'rotate(7deg) scale(1.05)',
+        'rotate(-6deg) scale(1.03)',
+        'rotate(5deg) scale(1.02)',
+        'rotate(-4deg) scale(1.01)',
+        'rotate(0deg) scale(1.0)'
+      ];
+
+      shakes.forEach((transformStyle, index) => {
+        setTimeout(() => {
+          heroBox.style.transform = transformStyle;
+          if (index === shakes.length - 1) {
+            isShaking = false;
+          }
+        }, index * 65);
+      });
+    };
+
+    heroBox.addEventListener('click', triggerWobble);
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        triggerWobble();
+      });
+    }
+  })();
+</script></main></body></html>

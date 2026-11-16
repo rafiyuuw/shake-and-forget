@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary": "#ffffff", "secondary-container": "#fd6f8b", "surface-container": "#f3ede4", "inverse-primary": "#ccbeff", "background": "#fff9f0", "tertiary-fixed-dim": "#edc157", "primary-fixed": "#e7deff", "error": "#ba1a1a", "on-surface": "#1d1b16", "surface-container-low": "#f9f3ea", "on-primary": "#ffffff", "primary-container": "#7755e8", "surface-variant": "#e7e2d9", "inverse-surface": "#32302a", "secondary": "#aa304e", "on-secondary-fixed-variant": "#8a1638", "on-primary-fixed-variant": "#4c20bc", "outline-variant": "#cac3d7", "tertiary-fixed": "#ffdf9b", "surface-container-highest": "#e7e2d9", "secondary-fixed": "#ffd9dd", "error-container": "#ffdad6", "on-secondary": "#ffffff", "on-secondary-container": "#700027", "surface-container-lowest": "#ffffff", "on-surface-variant": "#484554", "on-tertiary-fixed-variant": "#5b4300", "surface-dim": "#dfd9d1", "on-primary-container": "#f9f3ff", "surface-tint": "#6540d5", "on-error-container": "#93000a", "outline": "#797586", "on-tertiary-container": "#fff4e4", "on-error": "#ffffff", "surface": "#fff9f0", "on-background": "#1d1b16", "on-secondary-fixed": "#400013", "primary": "#5e38ce", "inverse-on-surface": "#f6f0e7", "on-tertiary-fixed": "#251a00", "secondary-fixed-dim": "#ffb2bc", "tertiary": "#705400", "on-primary-fixed": "#1f0060", "primary-fixed-dim": "#ccbeff", "surface-bright": "#fff9f0", "tertiary-container": "#8e6b00", "surface-container-high": "#ede7df" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-xl": "2.25rem", "space-lg": "1.5rem", "gutter": "1rem", "space-xs": "0.25rem", "margin": "1.25rem", "space-md": "1rem", "space-sm": "0.5rem" }, fontFamily: { "display-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "headline-md": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "title-md": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"] }, fontSize: { "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "800" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700" }], "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }], "headline-md": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "700" }], "label-lg": ["15px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "700" }], "title-md": ["18px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "700" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "800" }], "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }], "display-lg": ["40px", { lineHeight: "48px", letterSpacing: "-0.03em", fontWeight: "800" }], "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0.01em", fontWeight: "500" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#fff9f0;color:#1d1b16;-webkit-tap-highlight-color:transparent;}body{overscroll-behavior-y:none;font-family:"Plus Jakarta Sans",sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl pt-safe shadow-[0_4px_20px_rgba(41,36,58,0.03)]"><div class="w-full px-5 pt-1.5 pb-0.5 flex items-center justify-between text-on-surface select-none"><span class="font-label-sm text-label-sm tracking-wider font-bold">9:41</span><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] leading-none">signal_cellular_alt</span><span class="material-symbols-outlined text-[16px] leading-none">wifi</span><span class="material-symbols-outlined text-[18px] leading-none rotate-90">battery_full</span></div></div><div class="h-16 px-margin flex items-center justify-between gap-3"><div class="flex items-center gap-2.5 min-w-0"><img alt="Shake & Forget Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXI2YCR3uhILIBIItiGEyyW7QoM4hYEHjf9hVJVw3JZqb0xT7CACGrqrHSAJE3fvjMZ220fXvYTnKhEzhZlTVmWN4pMa0nwIpuaX_U-HMdjsS0iWwWbysp-5bTDWIyQ1HjAP7tPp3-rKnXs4Cbgy5YGV1-IQ-jDp1aaPp6rHpl6NVb9jgINVF6_1uICL0HIilbrBp7c-Q0QcvXCYQXt--qNnGBvX_bHGW3BvBoaR0"/><div class="flex items-center gap-1.5 min-w-0"><span class="font-title-md text-title-md tracking-tight truncate text-on-surface font-extrabold">SHAKE & FORGET</span><span class="material-symbols-outlined text-primary-container text-[20px] animate-pulse shrink-0">vibration</span></div></div><div class="flex items-center gap-2 shrink-0"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-24 pb-28 px-margin bg-surface"><div class="flex flex-col w-full gap-space-lg select-none">
+<!-- Greeting Banner -->
+<section class="flex items-center justify-between gap-space-md">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="font-label-md text-label-md text-on-surface-variant font-bold">Hey there, Alex!</span>
+<span class="text-[16px] inline-block animate-bounce">👋</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight font-extrabold">Ready to decide?</h1>
+<div class="mt-1.5 flex items-center">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>Stop thinking. Start shaking.</span>
+</div>
+</div>
+</div>
+<div class="relative shrink-0">
+<div class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center shadow-md transform rotate-6 hover:rotate-12 transition-transform">
+<span class="material-symbols-outlined text-tertiary-container text-[28px]" style="font-variation-settings: 'FILL' 1;">magic_button</span>
+</div>
+<span class="absolute -top-1 -right-1 flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-secondary"></span>
+</span>
+</div>
+</section>
+<!-- Hero Kinetic Decision Card -->
+<section class="relative w-full rounded-xl bg-primary text-on-primary p-space-lg shadow-xl overflow-hidden" id="shakeCard">
+<!-- Playful Ambient Decorative Elements -->
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-12 w-48 h-48 bg-secondary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<!-- Kinetic Vibration Indicator Tag -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm mb-4 shadow-sm">
+<span class="material-symbols-outlined text-[15px] animate-spin" style="animation-duration: 4s;">arrow_back_ios_new</span>
+<span>Instant Randomizer • 54 Choices Active</span>
+</div>
+<!-- Playful 3D-vibe Mascot Illustration -->
+<div class="relative my-2 w-full flex items-center justify-center py-2">
+<div class="relative w-28 h-36 rounded-lg bg-surface-container-lowest text-on-surface shadow-2xl flex flex-col items-center justify-between p-2.5 transition-transform duration-100 ease-out cursor-pointer active:scale-95" id="heroPhoneMascot">
+<!-- Speaker ear notch -->
+<div class="w-8 h-1 bg-surface-variant rounded-full"></div>
+<!-- Animated Face on Screen -->
+<div class="flex flex-col items-center justify-center gap-1 my-auto">
+<div class="flex items-center gap-4">
+<span class="w-2.5 h-3 bg-primary rounded-full block animate-pulse"></span>
+<span class="w-2.5 h-3 bg-primary rounded-full block animate-pulse"></span>
+</div>
+<div class="w-5 h-2.5 rounded-b-full bg-secondary-container mt-1"></div>
+<span class="font-label-sm text-label-sm text-primary font-black tracking-widest mt-1">OOF!</span>
+</div>
+<!-- Phone Home Indicator Bar -->
+<div class="w-10 h-1 bg-surface-variant rounded-full"></div>
+<!-- Playful Visual Shockwaves -->
+<span class="absolute -left-5 top-8 text-tertiary-fixed text-[24px] font-black select-none pointer-events-none animate-pulse">⚡</span>
+<span class="absolute -right-5 bottom-8 text-secondary-container text-[20px] font-black select-none pointer-events-none animate-bounce">💥</span>
+<span class="absolute -top-3 right-2 text-surface-container-lowest text-[18px] select-none pointer-events-none">✨</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-primary-fixed max-w-xs mt-3 mb-5 font-bold">
+        Can't pick dinner or next Netflix binge? Let physics handle the guilt.
+      </p>
+<!-- Giant Tactile 3D Button -->
+<button class="group relative w-full h-14 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-headline-md text-headline-md flex items-center justify-center gap-2 shadow-[0_5px_0_#8e6b00] active:translate-y-1 active:shadow-[0_1px_0_#8e6b00] transition-all duration-150" id="mainShakeTrigger">
+<span class="material-symbols-outlined text-[26px] group-hover:rotate-12 transition-transform">vibration</span>
+<span class="tracking-tight uppercase">SHAKE IT!</span>
+<span class="material-symbols-outlined text-[24px] text-tertiary-container">auto_awesome</span>
+</button>
+<!-- Micro Helper Notice -->
+<span class="mt-2.5 font-label-sm text-label-sm text-primary-fixed/80">or physically shake your phone right now!</span>
+</div>
+</section>
+<!-- Quick Decision Categories -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-title-md text-title-md text-on-surface font-extrabold">Instant Jars</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">4 Ready</span>
+</div>
+<button class="font-label-md text-label-md text-primary font-bold hover:underline flex items-center gap-0.5">
+<span>Customize</span>
+<span class="material-symbols-outlined text-[16px]">tune</span>
+</button>
+</div>
+<!-- 2x2 Bento Decision Blocks -->
+<div class="grid grid-cols-2 gap-space-sm">
+<!-- Card 1: Food -->
+<div class="relative rounded-lg bg-secondary-fixed text-on-secondary-fixed p-space-md shadow-md flex flex-col justify-between h-36 cursor-pointer active:scale-98 transition-transform">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-[22px] shadow-sm">
+            🍕
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm">
+            24 spots
+          </span>
+</div>
+<div class="min-w-0">
+<h2 class="font-title-md text-title-md font-extrabold tracking-tight truncate">Food Craving</h2>
+<p class="font-label-sm text-label-sm text-on-secondary-fixed-variant truncate">Burgers, sushi & tacos</p>
+</div>
+</div>
+<!-- Card 2: Entertainment -->
+<div class="relative rounded-lg bg-primary-fixed text-on-primary-fixed p-space-md shadow-md flex flex-col justify-between h-36 cursor-pointer active:scale-98 transition-transform">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-[22px] shadow-sm">
+            🎬
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm">
+            18 items
+          </span>
+</div>
+<div class="min-w-0">
+<h2 class="font-title-md text-title-md font-extrabold tracking-tight truncate">Movie Night</h2>
+<p class="font-label-sm text-label-sm text-on-primary-fixed-variant truncate">Queued watchlists</p>
+</div>
+</div>
+<!-- Card 3: Daily Dilemmas -->
+<div class="relative rounded-lg bg-surface-container-high text-on-surface p-space-md shadow-md flex flex-col justify-between h-36 cursor-pointer active:scale-98 transition-transform">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-[22px] shadow-sm">
+            ⚡
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+            12 tasks
+          </span>
+</div>
+<div class="min-w-0">
+<h2 class="font-title-md text-title-md font-extrabold tracking-tight truncate">Daily Habit</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Gym, read, or tidy?</p>
+</div>
+</div>
+<!-- Card 4: Random Wildcard -->
+<div class="relative rounded-lg bg-tertiary-fixed text-on-tertiary-fixed p-space-md shadow-md flex flex-col justify-between h-36 cursor-pointer active:scale-98 transition-transform">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm flex items-center justify-center text-[22px] shadow-sm">
+            🎲
+          </div>
+<span class="px-2 py-0.5 rounded-full bg-tertiary text-on-tertiary font-label-sm text-label-sm">
+            Wildcard
+          </span>
+</div>
+<div class="min-w-0">
+<h2 class="font-title-md text-title-md font-extrabold tracking-tight truncate">Total Chaos</h2>
+<p class="font-label-sm text-label-sm text-on-tertiary-fixed-variant truncate">True cosmic roulette</p>
+</div>
+</div>
+</div>
+<!-- Create Custom Dilemma solver prompt -->
+<button class="w-full mt-1 rounded-lg bg-surface-container-lowest text-on-surface p-space-md shadow-sm flex items-center justify-between hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold text-[22px] group-hover:scale-110 transition-transform">
+          +
+        </div>
+<div class="flex flex-col text-left">
+<span class="font-title-md text-title-md font-extrabold leading-tight">Create Custom Jar</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Add your personal indecisions</span>
+</div>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</div>
+</button>
+</section>
+<!-- Curated In-App Decision Gallery Placeholders -->
+<section class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-on-surface font-extrabold">Inspiration Jars</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Trending with friends</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="flex flex-col rounded-lg bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="relative h-24 w-full">
+<img class="w-full h-full object-cover" data-alt="Vibrant top-down photo of artisanal gourmet street food tacos, ramen noodles, and crisp appetizers on colorful ceramic dishes with cheerful daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTvHysG3fXd6AYbiFJoll5vM3zLZeSr2qNcHAdhtWLNE5OFad90ipQBmmDeOPLDKc4mhQqTXv_GsNJmUDJSsRyMy_bLa6XaayavFOcL_0sAU0MXWbAIRFhgKURoQrvk2xyORL7facVckO0sJll4suiiMahNSHBK5gLu7HdVh65-FG2CUuL960i2Z-7ZxMcVlEvh_EIRdD7HLg4wc4z6jt7BiNV1Ad4tNTMN29gP8E"/>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">Takeout Duel</span>
+</div>
+<div class="p-2.5">
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-1">32 spicy dinner choices</p>
+</div>
+</div>
+<div class="flex flex-col rounded-lg bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="relative h-24 w-full">
+<img class="w-full h-full object-cover" data-alt="Playful cozy movie night flatlay with buttery popcorn box, retro streaming remote, warm ambient neon purple lighting and colorful tickets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuP8Eo3o5PQzw7V85PPe6sMTI13dbG0c2qiwHmcIefhYINFAIVpUk6XDXFnm_54x99ClRryXR8ZTBc3pW8yhC_Gz_tlz0SqsPpHLpgpIU8TDJAFllHylFy4jFczXp91rOcjc4bd7r6LzAM59iX2B8Y62go5PpMqEwhNpmFWv3odMB1NDFp46CS5YfhLOY6NA9n1zLgXNdj-W2sWQtjA9Yu9vvpv3ixs4K52qkS_mI"/>
+<span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">Streaming Gold</span>
+</div>
+<div class="p-2.5">
+<p class="font-label-sm text-label-sm text-on-surface-variant line-clamp-1">20 hidden gem films</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recently Shaken Decisions -->
+<section class="flex flex-col gap-space-sm mb-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[20px]">history_edu</span>
+<span class="font-title-md text-title-md text-on-surface font-extrabold">Recently Shaken</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-bold hover:underline flex items-center" href="#">
+<span>View all</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</div>
+<!-- History Card 1 -->
+<div class="rounded-lg bg-surface-container-lowest p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-11 h-11 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0 text-[20px] shadow-sm">
+          🍜
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">What to eat for lunch?</span>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-extrabold truncate">Spicy Tonkotsu Ramen</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/80 mt-0.5">15 mins ago</span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span>Loved it!</span>
+<span class="text-[12px]">⭐</span>
+</span>
+</div>
+</div>
+<!-- History Card 2 -->
+<div class="rounded-lg bg-surface-container-lowest p-space-md shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-11 h-11 rounded-full bg-primary-fixed text-on-primary-fixed flex items-center justify-center shrink-0 text-[20px] shadow-sm">
+          🍿
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Friday Movie Marathon</span>
+<div class="flex items-center gap-1.5">
+<span class="font-title-md text-title-md text-on-surface font-extrabold truncate">Interstellar (4K)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant/80 mt-0.5">Yesterday • 8:40 PM</span>
+</div>
+</div>
+<div class="shrink-0 flex flex-col items-end gap-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">
+          Completed
+        </span>
+</div>
+</div>
+</section>
+<!-- Shake Modal Reveal Simulation Container -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden items-center justify-center p-space-lg" id="decisionModal">
+<div class="w-full max-w-sm rounded-xl bg-surface-container-lowest text-on-surface p-space-lg shadow-2xl flex flex-col items-center text-center transform transition-all duration-300 scale-95 opacity-0" id="decisionModalCard">
+<div class="w-16 h-16 rounded-full bg-primary-fixed text-primary flex items-center justify-center mb-3 text-[32px] animate-bounce">
+        🎉
+      </div>
+<span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold uppercase tracking-wider mb-2">The Oracle Has Spoken</span>
+<h3 class="font-headline-lg text-headline-lg text-primary font-black tracking-tight my-1" id="decisionVerdict">Crispy Baja Tacos</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 mb-6">
+        No second guessing! The jar has decided your fate. Go fulfill the prophecy!
+      </p>
+<div class="flex flex-col w-full gap-2.5">
+<button class="w-full h-12 rounded-full bg-primary text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary-container transition-colors" id="acceptDecisionBtn">
+          Lock It In! 🔒
+        </button>
+<button class="w-full h-12 rounded-full bg-surface-container-highest text-on-surface font-label-lg text-label-lg hover:bg-surface-variant transition-colors flex items-center justify-center gap-1.5" id="reShakeBtn">
+<span class="material-symbols-outlined text-[18px]">replay</span>
+<span>Shameful Re-Roll</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const triggerBtn = document.getElementById('mainShakeTrigger');
+    const mascot = document.getElementById('heroPhoneMascot');
+    const modal = document.getElementById('decisionModal');
+    const modalCard = document.getElementById('decisionModalCard');
+    const verdictText = document.getElementById('decisionVerdict');
+    const acceptBtn = document.getElementById('acceptDecisionBtn');
+    const reShakeBtn = document.getElementById('reShakeBtn');
+
+    const samplePicks = [
+      "Crispy Baja Tacos 🌮",
+      "Woodfired Margherita Pizza 🍕",
+      "Spicy Pad Thai Noodles 🍜",
+      "Double Smash Burger & Fries 🍔",
+      "Cold Brew & Cinnamon Pastry ☕",
+      "Cozy Sci-Fi Movie Binge 🛸"
+    ];
+
+    function triggerSpontaneousVibration() {
+      if (navigator.vibrate) {
+        navigator.vibrate([40, 60, 80, 50, 100]);
+      }
+      
+      let shakes = 0;
+      const interval = setInterval(() => {
+        const randX = (Math.random() - 0.5) * 24;
+        const randRotate = (Math.random() - 0.5) * 18;
+        mascot.style.transform = `translate3d(${randX}px, 0, 0) rotate(${randRotate}deg) scale(1.08)`;
+        shakes++;
+        if (shakes > 10) {
+          clearInterval(interval);
+          mascot.style.transform = 'translate3d(0, 0, 0) rotate(0deg) scale(1)';
+          openVerdict();
+        }
+      }, 50);
+    }
+
+    function openVerdict() {
+      const pick = samplePicks[Math.floor(Math.random() * samplePicks.length)];
+      verdictText.textContent = pick;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => {
+        modalCard.classList.remove('scale-95', 'opacity-0');
+        modalCard.classList.add('scale-100', 'opacity-100');
+      }, 20);
+    }
+
+    function closeModal() {
+      modalCard.classList.add('scale-95', 'opacity-0');
+      modalCard.classList.remove('scale-100', 'opacity-100');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }, 200);
+    }
+
+    if (triggerBtn) {
+      triggerBtn.addEventListener('click', triggerSpontaneousVibration);
+    }
+
+    if (mascot) {
+      mascot.addEventListener('click', triggerSpontaneousVibration);
+    }
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', closeModal);
+    }
+
+    if (reShakeBtn) {
+      reShakeBtn.addEventListener('click', () => {
+        closeModal();
+        setTimeout(triggerSpontaneousVibration, 300);
+      });
+    }
+
+    // Accelerometer listener for real phone shaking
+    let lastX, lastY, lastZ;
+    let lastUpdate = 0;
+    if (window.DeviceMotionEvent) {
+      window.addEventListener('devicemotion', (e) => {
+        const current = e.accelerationIncludingGravity;
+        if (!current) return;
+        const curTime = Date.now();
+        if ((curTime - lastUpdate) > 100) {
+          const diffTime = (curTime - lastUpdate);
+          lastUpdate = curTime;
+          if (lastX !== undefined) {
+            const speed = Math.abs(current.x + current.y + current.z - lastX - lastY - lastZ) / diffTime * 10000;
+            if (speed > 800 && modal.classList.contains('hidden')) {
+              triggerSpontaneousVibration();
+            }
+          }
+          lastX = current.x;
+          lastY = current.y;
+          lastZ = current.z;
+        }
+      }, false);
+    }
+  })();
+</script></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl rounded-t-lg shadow-[0_-8px_24px_rgba(41,36,58,0.06)]" data-active-classes="text-primary-container [&_.nav-pill]:bg-primary-fixed [&_.nav-pill]:text-primary [&_.nav-pill]:scale-105 font-bold"><div class="flex items-center justify-around h-16 px-space-sm"><a aria-current="page" class="group flex flex-col items-center justify-center flex-1 h-full transition-all text-primary-container [&_.nav-pill]:bg-primary-fixed [&_.nav-pill]:text-primary [&_.nav-pill]:scale-105 font-bold" data-path="home" href="#"><div class="nav-pill px-4 py-1 rounded-full flex items-center justify-center transition-all duration-200 group-hover:bg-surface-variant"><span class="material-symbols-outlined text-[24px]">auto_awesome</span></div><span class="font-label-sm text-label-sm mt-0.5 tracking-tight font-bold">Home</span></a><a class="group flex flex-col items-center justify-center flex-1 h-full text-on-surface-variant transition-all" data-path="my-lists" href="#"><div class="nav-pill px-4 py-1 rounded-full flex items-center justify-center transition-all duration-200 group-hover:bg-surface-variant"><span class="material-symbols-outlined text-[24px]">dashboard_customize</span></div><span class="font-label-sm text-label-sm mt-0.5 tracking-tight font-bold">My Lists</span></a><a class="group flex flex-col items-center justify-center flex-1 h-full text-on-surface-variant transition-all" data-path="history" href="#"><div class="nav-pill px-4 py-1 rounded-full flex items-center justify-center transition-all duration-200 group-hover:bg-surface-variant"><span class="material-symbols-outlined text-[24px]">history_edu</span></div><span class="font-label-sm text-label-sm mt-0.5 tracking-tight font-bold">History</span></a><a class="group flex flex-col items-center justify-center flex-1 h-full text-on-surface-variant transition-all" data-path="settings" href="#"><div class="nav-pill px-4 py-1 rounded-full flex items-center justify-center transition-all duration-200 group-hover:bg-surface-variant"><span class="material-symbols-outlined text-[24px]">tune</span></div><span class="font-label-sm text-label-sm mt-0.5 tracking-tight font-bold">Settings</span></a></div><div class="flex items-center justify-center pb-2 pt-0.5 w-full"><div class="w-32 h-1 bg-on-surface-variant/30 rounded-full"></div></div></nav></body></html>

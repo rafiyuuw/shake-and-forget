@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sensor Test &amp; Physics Calibration - Settings Modal</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with configuration -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#4c20bc",
+            "secondary": "#aa304e",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#5b4300",
+            "on-secondary-fixed-variant": "#8a1638",
+            "tertiary-fixed": "#ffdf9b",
+            "secondary-fixed": "#ffd9dd",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed": "#251a00",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#cac3d7",
+            "surface-variant": "#e7e2d9",
+            "on-surface-variant": "#484554",
+            "primary-container": "#7755e8",
+            "surface-bright": "#fff9f0",
+            "on-secondary-fixed": "#400013",
+            "secondary-container": "#fd6f8b",
+            "tertiary-fixed-dim": "#edc157",
+            "primary-fixed": "#e7deff",
+            "on-tertiary": "#ffffff",
+            "primary": "#5e38ce",
+            "surface-tint": "#6540d5",
+            "on-background": "#1d1b16",
+            "tertiary": "#705400",
+            "tertiary-container": "#8e6b00",
+            "inverse-surface": "#32302a",
+            "surface-container-high": "#ede7df",
+            "primary-fixed-dim": "#ccbeff",
+            "surface-container-highest": "#e7e2d9",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "on-primary-container": "#f9f3ff",
+            "inverse-primary": "#ccbeff",
+            "outline": "#797586",
+            "on-primary-fixed": "#1f0060",
+            "background": "#fff9f0",
+            "inverse-on-surface": "#f6f0e7",
+            "on-surface": "#1d1b16",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#ffb2bc",
+            "on-tertiary-container": "#fff4e4",
+            "surface-dim": "#dfd9d1",
+            "on-secondary-container": "#700027",
+            "surface": "#fff9f0",
+            "surface-container-low": "#f9f3ea",
+            "surface-container": "#f3ede4"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1.25rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.25rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem"
+          },
+          "fontFamily": {
+            "title-md": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "display-lg-mobile": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "display-lg": ["Plus Jakarta Sans"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @keyframes gentle-rumble {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      20% { transform: translate(-3px, 2px) rotate(-2deg); }
+      40% { transform: translate(3px, -2px) rotate(2deg); }
+      60% { transform: translate(-2px, -1px) rotate(-1deg); }
+      80% { transform: translate(2px, 2px) rotate(1.5deg); }
+    }
+    .animate-rumble {
+      animation: gentle-rumble 0.35s infinite ease-in-out;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 0.3; }
+      100% { transform: scale(0.9); opacity: 0.8; }
+    }
+    .animate-pulse-ring {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased select-none font-['Plus_Jakarta_Sans',sans-serif]">
+<!-- Mobile Device Shell Wrapper -->
+<div class="relative mx-auto flex min-h-screen max-w-md flex-col bg-surface shadow-2xl overflow-hidden border-x border-outline-variant/30">
+<!-- Android Status Bar Emulation -->
+<div class="flex items-center justify-between px-6 pt-3 pb-1 text-on-surface/80 text-xs font-semibold z-10">
+<span>09:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-[16px]">wifi</span>
+<span class="material-symbols-outlined text-[16px]">battery_full</span>
+</div>
+</div>
+<!-- UNDERLYING BACKGROUND PAGE: Screen 8 (Settings Content) -->
+<div class="flex-1 flex flex-col px-4 pt-1 pb-24 opacity-60">
+<!-- Top Settings Header -->
+<div class="flex items-center justify-between py-3">
+<div class="flex size-10 items-center justify-center rounded-full bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined text-[22px]">arrow_back</span>
+</div>
+<h1 class="text-title-md font-bold text-on-surface">Settings</h1>
+<div class="flex size-10 items-center justify-center rounded-full bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</div>
+</div>
+<!-- Settings Sections (Mocked for Visual Depth Behind Modal) -->
+<div class="space-y-4 mt-2">
+<div class="rounded-DEFAULT bg-surface-container-lowest p-4 shadow-sm border border-outline-variant/40">
+<h2 class="text-label-md uppercase tracking-wider text-outline mb-3">Shake Sensitivity &amp; Triggers</h2>
+<div class="flex items-center justify-between py-2 border-b border-surface-container">
+<span class="text-body-md font-semibold">Shake to Forget Action</span>
+<div class="w-10 h-6 bg-primary-container rounded-full flex items-center justify-end px-1">
+<div class="w-4 h-4 bg-on-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-surface-container">
+<div>
+<p class="text-body-md font-semibold">Threshold Sensitivity</p>
+<p class="text-xs text-outline">Normal (2.4G force)</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="flex items-center justify-between pt-3">
+<div>
+<p class="text-body-md font-semibold text-primary">Simulate Shake &amp; Calibrate</p>
+<p class="text-xs text-on-surface-variant">Diagnostics &amp; Gyroscope testing</p>
+</div>
+<span class="material-symbols-outlined text-primary">tune</span>
+</div>
+</div>
+<div class="rounded-DEFAULT bg-surface-container-lowest p-4 shadow-sm border border-outline-variant/40">
+<h2 class="text-label-md uppercase tracking-wider text-outline mb-3">Haptic &amp; Audio Feedback</h2>
+<div class="flex items-center justify-between py-2 border-b border-surface-container">
+<span class="text-body-md font-semibold">Double Tap Haptic Thud</span>
+<div class="w-10 h-6 bg-primary-container rounded-full flex items-center justify-end px-1">
+<div class="w-4 h-4 bg-on-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-body-md font-semibold">Cork Pop Sound FX</span>
+<div class="w-10 h-6 bg-surface-variant rounded-full flex items-center px-1">
+<div class="w-4 h-4 bg-outline rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="rounded-DEFAULT bg-surface-container-lowest p-4 shadow-sm border border-outline-variant/40">
+<h2 class="text-label-md uppercase tracking-wider text-outline mb-2">Privacy &amp; Data Clean</h2>
+<div class="flex items-center justify-between py-2">
+<span class="text-body-md font-semibold text-error">Clear All History Tokens</span>
+<span class="material-symbols-outlined text-error">delete</span>
+</div>
+</div>
+</div>
+</div>
+<!-- MODAL BACKDROP OVERLAY (Dimmed & Blurred) -->
+<div class="absolute inset-0 bg-[#29243a]/50 backdrop-blur-[5px] z-20 flex flex-col justify-end transition-all">
+<!-- Calibrate Modal Dialog Sheet -->
+<div class="relative w-full max-h-[813px] flex flex-col bg-surface-container-lowest rounded-t-xl border-t border-primary-fixed shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom duration-300">
+<!-- Sheet Handle -->
+<div class="flex h-5 w-full items-center justify-center pt-2">
+<div class="h-1.5 w-10 rounded-full bg-outline-variant/80"></div>
+</div>
+<!-- Modal Header -->
+<div class="flex items-center justify-between px-5 pt-2 pb-3 border-b border-surface-container">
+<div class="flex items-center gap-2.5">
+<div class="flex size-8 items-center justify-center rounded-full bg-primary-fixed text-primary">
+<span class="material-symbols-outlined text-[20px]">sensors</span>
+</div>
+<div>
+<h2 class="text-title-md font-bold text-on-surface leading-tight">Sensor Test &amp; Physics Calibration</h2>
+<p class="text-xs text-on-surface-variant font-medium">Real-time IMU Gyro &amp; Accelerometer Feedback</p>
+</div>
+</div>
+<button class="flex size-9 items-center justify-center rounded-full bg-surface-container hover:bg-surface-variant text-on-surface transition-colors" title="Close">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Scrollable Modal Content Area -->
+<div class="flex-1 overflow-y-auto px-5 py-3 space-y-4">
+<!-- Mascot & Animated Physics Visualizer Area -->
+<div class="relative overflow-hidden rounded-DEFAULT bg-gradient-to-br from-primary-fixed/40 via-surface-container-low to-secondary-fixed/30 p-4 border border-outline-variant/30 flex flex-col items-center">
+<!-- Animated decorative rings -->
+<div class="absolute -top-12 -right-12 size-40 rounded-full border-2 border-primary-container/20 animate-pulse-ring pointer-events-none"></div>
+<div class="absolute -bottom-10 -left-10 size-32 rounded-full border border-secondary-container/30 animate-pulse-ring pointer-events-none" style="animation-delay: 0.5s;"></div>
+<!-- Vibrating Phone Graphic & Gyro Visualizer -->
+<div class="relative flex items-center justify-center my-2">
+<!-- Dynamic Force Radial Aura -->
+<div class="absolute size-28 rounded-full bg-gradient-to-tr from-primary-container/30 to-secondary-container/40 blur-md"></div>
+<!-- 3D Vibrating Phone -->
+<div class="relative z-10 flex h-28 w-16 flex-col items-center justify-between rounded-xl border-[3px] border-primary-container bg-surface-container-lowest p-1.5 shadow-lg animate-rumble">
+<!-- Phone Speaker/Camera -->
+<div class="h-1 w-5 rounded-full bg-outline-variant"></div>
+<!-- Screen Content (Animated Waveform) -->
+<div class="w-full flex-1 my-1 rounded bg-gradient-to-b from-primary-fixed/60 to-surface-bright flex flex-col items-center justify-center gap-1 overflow-hidden px-1">
+<div class="flex items-center gap-0.5 h-6">
+<span class="w-1 bg-primary rounded-full animate-bounce h-4" style="animation-delay: 0.1s"></span>
+<span class="w-1 bg-secondary rounded-full animate-bounce h-6" style="animation-delay: 0.25s"></span>
+<span class="w-1 bg-primary-container rounded-full animate-bounce h-3" style="animation-delay: 0.15s"></span>
+<span class="w-1 bg-tertiary-container rounded-full animate-bounce h-5" style="animation-delay: 0.3s"></span>
+</div>
+<span class="text-[8px] font-bold text-primary tracking-tighter">SHAKE!</span>
+</div>
+<!-- Home bar -->
+<div class="h-1 w-4 rounded-full bg-outline-variant"></div>
+</div>
+<!-- Motion Arc Lines -->
+<div class="absolute -left-6 top-6 flex flex-col gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px] rotate-[-25deg]">air</span>
+</div>
+<div class="absolute -right-6 top-6 flex flex-col gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px] scale-x-[-1] rotate-[-25deg]">air</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center gap-1 rounded-full bg-surface-container-lowest px-2.5 py-0.5 text-xs font-semibold text-primary shadow-sm border border-primary-fixed">
+<span class="size-1.5 rounded-full bg-emerald-500 animate-ping"></span> Live IMU Connected
+              </span>
+<span class="inline-flex items-center gap-1 rounded-full bg-secondary-fixed px-2.5 py-0.5 text-xs font-bold text-on-secondary-fixed">
+                📳 Haptics: Active
+              </span>
+</div>
+</div>
+<!-- Live Telemetry Gauges (X, Y, Z dynamic meters) -->
+<div class="rounded-DEFAULT bg-surface-container-low p-3.5 border border-outline-variant/30 space-y-2.5">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-wider text-outline">Live Telemetry (g-force)</span>
+<span class="text-[11px] font-semibold text-primary-container bg-primary-fixed/50 px-2 py-0.5 rounded-full">60 Hz Polling</span>
+</div>
+<!-- X, Y, Z Meters Grid -->
+<div class="grid grid-cols-3 gap-2 pt-1">
+<!-- Axis X -->
+<div class="rounded-lg bg-surface-container-lowest p-2 border border-outline-variant/20 flex flex-col items-center">
+<span class="text-[11px] font-bold text-on-surface-variant">Axis X</span>
+<span class="text-sm font-extrabold text-primary font-mono my-0.5">+0.42g</span>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 48%;"></div>
+</div>
+</div>
+<!-- Axis Y (Gravity dominant) -->
+<div class="rounded-lg bg-surface-container-lowest p-2 border border-outline-variant/20 flex flex-col items-center">
+<span class="text-[11px] font-bold text-on-surface-variant">Axis Y</span>
+<span class="text-sm font-extrabold text-secondary font-mono my-0.5">-9.81g</span>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-secondary h-full rounded-full" style="width: 95%;"></div>
+</div>
+</div>
+<!-- Axis Z -->
+<div class="rounded-lg bg-surface-container-lowest p-2 border border-outline-variant/20 flex flex-col items-center">
+<span class="text-[11px] font-bold text-on-surface-variant">Axis Z</span>
+<span class="text-sm font-extrabold text-tertiary-container font-mono my-0.5">+0.15g</span>
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+</div>
+<!-- Real-time Shake Force Gauge / Threshold Meter -->
+<div class="mt-3 pt-2 border-t border-outline-variant/30 space-y-1.5">
+<div class="flex items-center justify-between text-xs">
+<span class="font-bold text-on-surface">Shake Velocity Impact</span>
+<span class="font-extrabold text-secondary flex items-center gap-1">
+                  Detected: 82% (Threshold Triggered! 🎯)
+                </span>
+</div>
+<div class="relative w-full h-3 bg-surface-container rounded-full overflow-hidden p-0.5">
+<!-- Threshold Marker line at 75% -->
+<div class="absolute top-0 bottom-0 left-[75%] w-0.5 bg-outline z-10 shadow-sm" title="Trigger Threshold (75%)"></div>
+<div class="h-full rounded-full bg-gradient-to-r from-primary via-primary-container to-secondary-container transition-all duration-300" style="width: 82%;"></div>
+</div>
+<div class="flex justify-between text-[10px] font-semibold text-outline">
+<span>0.0G (Rest)</span>
+<span class="text-on-surface-variant">Trigger Line (1.8G)</span>
+<span>3.0G (Max)</span>
+</div>
+</div>
+</div>
+<!-- Sensitivity Preset Selector Radio Pills -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-outline block">Sensitivity Preset</label>
+<div class="grid grid-cols-2 gap-2">
+<!-- Casual -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:border-primary-fixed">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Casual</span>
+<span class="text-[10px] text-outline">Light Shake (1.2G)</span>
+</div>
+<input class="text-primary focus:ring-primary h-4 w-4" name="sensitivity" type="radio"/>
+</label>
+<!-- Normal (Active) -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border-2 border-primary bg-primary-fixed/20 cursor-pointer shadow-sm">
+<div class="flex flex-col">
+<span class="text-xs font-extrabold text-primary">Normal (Mid)</span>
+<span class="text-[10px] text-on-surface-variant">Standard (1.8G)</span>
+</div>
+<input checked="" class="text-primary focus:ring-primary h-4 w-4" name="sensitivity" type="radio"/>
+</label>
+<!-- Energetic -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:border-primary-fixed">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Energetic</span>
+<span class="text-[10px] text-outline">Firm Snap (2.4G)</span>
+</div>
+<input class="text-primary focus:ring-primary h-4 w-4" name="sensitivity" type="radio"/>
+</label>
+<!-- Extreme Flick -->
+<label class="flex items-center justify-between p-2.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:border-primary-fixed">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Extreme Flick</span>
+<span class="text-[10px] text-outline">Intense (3.2G)</span>
+</div>
+<input class="text-primary focus:ring-primary h-4 w-4" name="sensitivity" type="radio"/>
+</label>
+</div>
+</div>
+<!-- Interactive Test Triggers & Sound Buttons -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-on-surface">Gesture Instruction</span>
+<span class="text-[11px] text-primary font-medium">Wrist Flick or Rapid Tap</span>
+</div>
+<div class="flex gap-2">
+<!-- Simulate 1.2G Shake Button -->
+<button class="flex-1 flex items-center justify-center gap-2 rounded-lg bg-secondary-fixed hover:bg-secondary-fixed-dim text-on-secondary-fixed py-2.5 px-3 font-bold text-xs shadow-sm transition active:scale-95">
+<span class="text-base">💥</span>
+<span>Simulate 1.2G Shake</span>
+</button>
+<!-- Sound Test Chime -->
+<button class="flex items-center justify-center gap-1.5 rounded-lg bg-surface-container border border-outline-variant/50 hover:bg-surface-variant text-on-surface px-3 py-2.5 font-bold text-xs transition active:scale-95">
+<span class="material-symbols-outlined text-[18px] text-primary">volume_up</span>
+<span>Chime</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Modal Bottom Actions -->
+<div class="p-4 bg-surface-container-lowest border-t border-surface-container flex flex-col gap-2">
+<button class="w-full flex items-center justify-center gap-2 rounded-full bg-[#7755e8] hover:bg-primary py-3.5 px-6 text-on-primary font-bold text-sm shadow-md transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Save &amp; Calibrate Gyro</span>
+</button>
+<button class="w-full py-2 text-center text-xs font-bold text-outline hover:text-on-surface transition-colors">
+            Reset to Defaults
+          </button>
+</div>
+</div>
+</div>
+<!-- SHARED COMPONENT: BottomNavBar (Preserved Exactly per Specification) -->
+<div class="relative flex h-auto w-full flex-col bg-[#f9f8fb] group/design-root overflow-x-hidden z-10" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+<div class="flex gap-2 border-t border-[#eae8f3] bg-[#f9f8fb] px-4 pb-3 pt-2">
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#605095]" href="#">
+<div class="text-[#605095] flex h-8 items-center justify-center" data-icon="Champagne" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M184,20a12,12,0,1,1,12,12A12,12,0,0,1,184,20ZM164.12,73.23c7.26,44.25,4.35,75.76-8.66,93.66A39.94,39.94,0,0,1,128,183.42V232h16a8,8,0,0,1,0,16H96a8,8,0,0,1,0-16h16V183.42a40,40,0,0,1-27.46-16.53c-13-17.9-15.91-49.41-8.65-93.66A451,451,0,0,1,90.1,13.53,8,8,0,0,1,97.71,8H142.3a8,8,0,0,1,7.61,5.53A451,451,0,0,1,164.12,73.23ZM93.8,64h52.4c-3-15.58-6.72-29.81-9.78-40H103.59C100.53,34.19,96.83,48.42,93.8,64ZM149,80H91c-4.49,30-5.14,61.54,6.45,77.49C102.63,164.56,110,168,120,168s17.38-3.44,22.52-10.51C154.1,141.54,153.46,110,149,80Zm71-40a12,12,0,1,0,12,12A12,12,0,0,0,220,40ZM196,88a12,12,0,1,0,12,12A12,12,0,0,0,196,88Z"></path>
+</svg>
+</div>
+<p class="text-[#605095] text-xs font-medium leading-normal tracking-[0.015em]">Shake</p>
+</a>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#605095]" href="#">
+<div class="text-[#605095] flex h-8 items-center justify-center" data-icon="Quotes" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z"></path>
+</svg>
+</div>
+<p class="text-[#605095] text-xs font-medium leading-normal tracking-[0.015em]">History</p>
+</a>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 text-[#605095]" href="#">
+<div class="text-[#605095] flex h-8 items-center justify-center" data-icon="ChartBar" data-size="24px" data-weight="regular">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M224,200h-8V40a8,8,0,0,0-8-8H152a8,8,0,0,0-8,8V80H96a8,8,0,0,0-8,8v40H48a8,8,0,0,0-8,8v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16ZM160,48h40V200H160ZM104,96h40V200H104ZM56,144H88v56H56Z"></path>
+</svg>
+</div>
+<p class="text-[#605095] text-xs font-medium leading-normal tracking-[0.015em]">Stats</p>
+</a>
+<a class="just flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-[#110e1b]" href="#">
+<div class="text-[#110e1b] flex h-8 items-center justify-center" data-icon="GearSix" data-size="24px" data-weight="fill">
+<svg fill="currentColor" height="24px" viewbox="0 0 256 256" width="24px" xmlns="http://www.w3.org/2000/svg">
+<path d="M237.94,107.21a8,8,0,0,0-3.89-5.4l-29.83-17-.12-33.62a8,8,0,0,0-2.83-6.08,111.91,111.91,0,0,0-36.72-20.67,8,8,0,0,0-6.46.59L128,41.85,97.88,25a8,8,0,0,0-6.47-.6A111.92,111.92,0,0,0,54.73,45.15a8,8,0,0,0-2.83,6.07l-.15,33.65-29.83,17a8,8,0,0,0-3.89,5.4,106.47,106.47,0,0,0,0,41.56,8,8,0,0,0,3.89,5.4l29.83,17,.12,33.63a8,8,0,0,0,2.83,6.08,111.91,111.91,0,0,0,36.72,20.67,8,8,0,0,0,6.46-.59L128,214.15,158.12,231a7.91,7.91,0,0,0,3.9,1,8.09,8.09,0,0,0,2.57-.42,112.1,112.1,0,0,0,36.68-20.73,8,8,0,0,0,2.83-6.07l.15-33.65,29.83-17a8,8,0,0,0,3.89-5.4A106.47,106.47,0,0,0,237.94,107.21ZM128,168a40,40,0,1,1,40-40A40,40,0,0,1,128,168Z"></path>
+</svg>
+</div>
+<p class="text-[#110e1b] text-xs font-medium leading-normal tracking-[0.015em]">Settings</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>
