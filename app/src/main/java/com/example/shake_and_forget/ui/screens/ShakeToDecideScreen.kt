@@ -41,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.shake_and_forget.ui.components.ConfettiEffect
 import com.example.shake_and_forget.ui.theme.CoralPink
 import com.example.shake_and_forget.ui.theme.DesignTokens
 import com.example.shake_and_forget.ui.theme.ElectricGrape
@@ -65,88 +66,215 @@ fun ShakeToDecideScreen(
         }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MilkCream)
-            .verticalScroll(rememberScrollState())
-            .padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
-    ) {
-        Text(
-            text = "Shake to Decide",
-            style = MaterialTheme.typography.headlineLarge,
-            color = PrimaryInk
-        )
-
-        // Select Decision List
-        Text(
-            text = "Active Decision List",
-            style = MaterialTheme.typography.titleMedium,
-            color = PrimaryInk
-        )
-
-        LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            items(uiState.availableSets) { setDetails ->
-                val isSelected = uiState.selectedSet?.decisionSet?.id == setDetails.decisionSet.id
-                Box(
-                    modifier = Modifier
-                        .background(
-                            if (isSelected) ElectricGrape else PureWhite,
-                            shape = DesignTokens.PillShape
-                        )
-                        .border(DesignTokens.BorderStyle, shape = DesignTokens.PillShape)
-                        .clickable { viewModel.selectDecisionSet(setDetails.decisionSet.id) }
-                        .padding(horizontal = 16.dp, vertical = 10.dp)
-                ) {
-                    Text(
-                        text = setDetails.decisionSet.title,
-                        style = MaterialTheme.typography.labelLarge,
-                        color = if (isSelected) PureWhite else PrimaryInk
-                    )
-                }
-            }
-        }
-
-        // Active Options Tiles (with Gyroscope Tilt Highlight)
-        uiState.selectedSet?.let { currentSet ->
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MilkCream)
+                .verticalScroll(rememberScrollState())
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
             Text(
-                text = "Tilt or Shake to Select (${currentSet.options.size} Options)",
+                text = "Shake to Decide",
+                style = MaterialTheme.typography.headlineLarge,
+                color = PrimaryInk
+            )
+
+            // Select Decision List
+            Text(
+                text = "Active Decision List",
                 style = MaterialTheme.typography.titleMedium,
                 color = PrimaryInk
             )
 
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                currentSet.options.forEachIndexed { index, option ->
-                    val isHighlighted = index == uiState.highlightedOptionIndex
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                items(uiState.availableSets) { setDetails ->
+                    val isSelected = uiState.selectedSet?.decisionSet?.id == setDetails.decisionSet.id
+                    Box(
+                        modifier = Modifier
+                            .background(
+                                if (isSelected) ElectricGrape else PureWhite,
+                                shape = DesignTokens.PillShape
+                            )
+                            .border(DesignTokens.BorderStyle, shape = DesignTokens.PillShape)
+                            .clickable { viewModel.selectDecisionSet(setDetails.decisionSet.id) }
+                            .padding(horizontal = 16.dp, vertical = 10.dp)
+                    ) {
+                        Text(
+                            text = setDetails.decisionSet.title,
+                            style = MaterialTheme.typography.labelLarge,
+                            color = if (isSelected) PureWhite else PrimaryInk
+                        )
+                    }
+                }
+            }
+
+            // Active Options Tiles (with Gyroscope Tilt Highlight)
+            uiState.selectedSet?.let { currentSet ->
+                Text(
+                    text = "Tilt or Shake to Select (${currentSet.options.size} Options)",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = PrimaryInk
+                )
+
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    currentSet.options.forEachIndexed { index, option ->
+                        val isHighlighted = index == uiState.highlightedOptionIndex
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(if (isHighlighted) 8.dp else 2.dp, DesignTokens.CardShape),
+                            shape = DesignTokens.CardShape,
+                            colors = CardDefaults.cardColors(
+                                containerColor = if (isHighlighted) SunnyYellow else PureWhite
+                            ),
+                            border = DesignTokens.BorderStyle
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(18.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = option.title,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = PrimaryInk
+                                )
+                                if (isHighlighted) {
+                                    Text(
+                                        text = "★ HIGHLIGHTED",
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = ElectricGrape
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Sensor Status Banner & Manual Shake Trigger
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .shadow(4.dp, DesignTokens.CardShape),
+                shape = DesignTokens.CardShape,
+                colors = CardDefaults.cardColors(containerColor = PureWhite),
+                border = DesignTokens.BorderStyle
+            ) {
+                Column(
+                    modifier = Modifier.padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Vibration,
+                            contentDescription = null,
+                            tint = ElectricGrape,
+                            modifier = Modifier.size(28.dp)
+                        )
+                        Text(
+                            text = if (uiState.isShaking) "SHAKING IN PROGRESS..." else "SHAKE YOUR PHONE NOW!",
+                            style = MaterialTheme.typography.titleMedium,
+                            color = PrimaryInk
+                        )
+                    }
+
+                    Text(
+                        text = if (uiState.isShakeSensorAvailable)
+                            "Accelerometer motion sensor active. Give your phone a firm shake!"
+                        else
+                            "Sensor unavailable on this device. Use manual shake button below.",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = SecondaryInk
+                    )
+
+                    Button(
+                        onClick = { viewModel.triggerShakeRoll() },
+                        enabled = !uiState.isShaking && uiState.selectedSet != null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(52.dp)
+                            .shadow(4.dp, DesignTokens.PillShape),
+                        shape = DesignTokens.PillShape,
+                        colors = ButtonDefaults.buttonColors(containerColor = ElectricGrape, contentColor = PureWhite)
+                    ) {
+                        Icon(imageVector = Icons.Default.Vibration, contentDescription = null)
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(text = "TRIGGER MANUAL SHAKE", style = MaterialTheme.typography.labelLarge)
+                    }
+                }
+            }
+
+            // Decision Result Overlay Card
+            AnimatedVisibility(
+                visible = uiState.decisionResult != null,
+                enter = fadeIn(tween(300)) + scaleIn(tween(300))
+            ) {
+                uiState.decisionResult?.let { resultText ->
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(if (isHighlighted) 8.dp else 2.dp, DesignTokens.CardShape),
+                            .shadow(12.dp, DesignTokens.CardShape),
                         shape = DesignTokens.CardShape,
-                        colors = CardDefaults.cardColors(
-                            containerColor = if (isHighlighted) SunnyYellow else PureWhite
-                        ),
+                        colors = CardDefaults.cardColors(containerColor = MintGreen),
                         border = DesignTokens.BorderStyle
                     ) {
-                        Row(
+                        Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(18.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                                .padding(24.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(14.dp)
                         ) {
+                            Icon(
+                                imageVector = Icons.Default.Celebration,
+                                contentDescription = null,
+                                tint = PrimaryInk,
+                                modifier = Modifier.size(40.dp)
+                            )
                             Text(
-                                text = option.title,
-                                style = MaterialTheme.typography.titleMedium,
+                                text = "FINAL VERDICT",
+                                style = MaterialTheme.typography.labelSmall,
                                 color = PrimaryInk
                             )
-                            if (isHighlighted) {
-                                Text(
-                                    text = "★ HIGHLIGHTED",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = ElectricGrape
-                                )
+                            Text(
+                                text = resultText,
+                                style = MaterialTheme.typography.displayLarge,
+                                color = PrimaryInk
+                            )
+
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            ) {
+                                Button(
+                                    onClick = { viewModel.triggerShakeRoll() },
+                                    modifier = Modifier.weight(1f),
+                                    shape = DesignTokens.PillShape,
+                                    colors = ButtonDefaults.buttonColors(containerColor = CoralPink, contentColor = PureWhite)
+                                ) {
+                                    Text("SHAKE AGAIN")
+                                }
+
+                                Button(
+                                    onClick = { viewModel.commitDecision() },
+                                    enabled = !uiState.isCommitted,
+                                    modifier = Modifier.weight(1f),
+                                    shape = DesignTokens.PillShape,
+                                    colors = ButtonDefaults.buttonColors(containerColor = ElectricGrape, contentColor = PureWhite)
+                                ) {
+                                    Icon(imageVector = Icons.Default.Check, contentDescription = null)
+                                    Spacer(modifier = Modifier.width(4.dp))
+                                    Text(if (uiState.isCommitted) "SAVED!" else "COMMIT")
+                                }
                             }
                         }
                     }
@@ -154,129 +282,9 @@ fun ShakeToDecideScreen(
             }
         }
 
-        // Sensor Status Banner & Manual Shake Trigger
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .shadow(4.dp, DesignTokens.CardShape),
-            shape = DesignTokens.CardShape,
-            colors = CardDefaults.cardColors(containerColor = PureWhite),
-            border = DesignTokens.BorderStyle
-        ) {
-            Column(
-                modifier = Modifier.padding(20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Vibration,
-                        contentDescription = null,
-                        tint = ElectricGrape,
-                        modifier = Modifier.size(28.dp)
-                    )
-                    Text(
-                        text = if (uiState.isShaking) "SHAKING IN PROGRESS..." else "SHAKE YOUR PHONE NOW!",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = PrimaryInk
-                    )
-                }
-
-                Text(
-                    text = if (uiState.isShakeSensorAvailable)
-                        "Accelerometer motion sensor active. Give your phone a firm shake!"
-                    else
-                        "Sensor unavailable on this device. Use manual shake button below.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = SecondaryInk
-                )
-
-                Button(
-                    onClick = { viewModel.triggerShakeRoll() },
-                    enabled = !uiState.isShaking && uiState.selectedSet != null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(52.dp)
-                        .shadow(4.dp, DesignTokens.PillShape),
-                    shape = DesignTokens.PillShape,
-                    colors = ButtonDefaults.buttonColors(containerColor = ElectricGrape, contentColor = PureWhite)
-                ) {
-                    Icon(imageVector = Icons.Default.Vibration, contentDescription = null)
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "TRIGGER MANUAL SHAKE", style = MaterialTheme.typography.labelLarge)
-                }
-            }
-        }
-
-        // Decision Result Overlay Card
-        AnimatedVisibility(
-            visible = uiState.decisionResult != null,
-            enter = fadeIn(tween(300)) + scaleIn(tween(300))
-        ) {
-            uiState.decisionResult?.let { resultText ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .shadow(12.dp, DesignTokens.CardShape),
-                    shape = DesignTokens.CardShape,
-                    colors = CardDefaults.cardColors(containerColor = MintGreen),
-                    border = DesignTokens.BorderStyle
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(14.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Celebration,
-                            contentDescription = null,
-                            tint = PrimaryInk,
-                            modifier = Modifier.size(40.dp)
-                        )
-                        Text(
-                            text = "FINAL VERDICT",
-                            style = MaterialTheme.typography.labelSmall,
-                            color = PrimaryInk
-                        )
-                        Text(
-                            text = resultText,
-                            style = MaterialTheme.typography.displayLarge,
-                            color = PrimaryInk
-                        )
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
-                        ) {
-                            Button(
-                                onClick = { viewModel.triggerShakeRoll() },
-                                modifier = Modifier.weight(1f),
-                                shape = DesignTokens.PillShape,
-                                colors = ButtonDefaults.buttonColors(containerColor = CoralPink, contentColor = PureWhite)
-                            ) {
-                                Text("SHAKE AGAIN")
-                            }
-
-                            Button(
-                                onClick = { viewModel.commitDecision() },
-                                enabled = !uiState.isCommitted,
-                                modifier = Modifier.weight(1f),
-                                shape = DesignTokens.PillShape,
-                                colors = ButtonDefaults.buttonColors(containerColor = ElectricGrape, contentColor = PureWhite)
-                            ) {
-                                Icon(imageVector = Icons.Default.Check, contentDescription = null)
-                                Spacer(modifier = Modifier.width(4.dp))
-                                Text(if (uiState.isCommitted) "SAVED!" else "COMMIT")
-                            }
-                        }
-                    }
-                }
-            }
+        // Confetti Particle Celebration Effect
+        if (uiState.decisionResult != null) {
+            ConfettiEffect()
         }
     }
 }
