@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,11 +14,19 @@ import com.example.shake_and_forget.ui.screens.MyListsScreen
 import com.example.shake_and_forget.ui.screens.QuickDecisionScreen
 import com.example.shake_and_forget.ui.screens.SettingsScreen
 import com.example.shake_and_forget.ui.screens.ShakeToDecideScreen
+import com.example.shake_and_forget.ui.viewmodels.DecisionListViewModel
+import com.example.shake_and_forget.ui.viewmodels.HistoryViewModel
+import com.example.shake_and_forget.ui.viewmodels.HomeViewModel
+import com.example.shake_and_forget.ui.viewmodels.QuickDecisionViewModel
+import com.example.shake_and_forget.ui.viewmodels.SettingsViewModel
+import com.example.shake_and_forget.ui.viewmodels.ShakeDecisionViewModel
+import com.example.shake_and_forget.ui.viewmodels.ViewModelFactory
 
 @Composable
 fun AppNavGraph(
     navController: NavHostController,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    viewModelFactory: ViewModelFactory
 ) {
     NavHost(
         navController = navController,
@@ -25,22 +34,35 @@ fun AppNavGraph(
         modifier = Modifier.padding(paddingValues)
     ) {
         composable(Screen.Home.route) {
-            HomeScreen(onNavigateToShake = { navController.navigate(Screen.ShakeToDecide.route) })
+            val homeViewModel: HomeViewModel = viewModel(factory = viewModelFactory)
+            HomeScreen(
+                viewModel = homeViewModel,
+                onNavigateToShake = { navController.navigate(Screen.ShakeToDecide.route) },
+                onNavigateToQuickPick = { navController.navigate(Screen.QuickDecision.route) }
+            )
         }
         composable(Screen.QuickDecision.route) {
-            QuickDecisionScreen()
+            val quickViewModel: QuickDecisionViewModel = viewModel(factory = viewModelFactory)
+            QuickDecisionScreen(
+                viewModel = quickViewModel,
+                onNavigateToShake = { navController.navigate(Screen.ShakeToDecide.route) }
+            )
         }
         composable(Screen.MyLists.route) {
-            MyListsScreen()
+            val listViewModel: DecisionListViewModel = viewModel(factory = viewModelFactory)
+            MyListsScreen(viewModel = listViewModel)
         }
         composable(Screen.History.route) {
-            HistoryScreen()
+            val historyViewModel: HistoryViewModel = viewModel(factory = viewModelFactory)
+            HistoryScreen(viewModel = historyViewModel)
         }
         composable(Screen.Settings.route) {
-            SettingsScreen()
+            val settingsViewModel: SettingsViewModel = viewModel(factory = viewModelFactory)
+            SettingsScreen(viewModel = settingsViewModel)
         }
         composable(Screen.ShakeToDecide.route) {
-            ShakeToDecideScreen()
+            val shakeViewModel: ShakeDecisionViewModel = viewModel(factory = viewModelFactory)
+            ShakeToDecideScreen(viewModel = shakeViewModel)
         }
     }
 }
