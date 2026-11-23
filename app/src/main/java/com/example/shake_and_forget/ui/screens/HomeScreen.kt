@@ -21,12 +21,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Vibration
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -55,7 +57,8 @@ import com.example.shake_and_forget.ui.viewmodels.HomeViewModel
 fun HomeScreen(
     viewModel: HomeViewModel,
     onNavigateToShake: () -> Unit = {},
-    onNavigateToQuickPick: () -> Unit = {}
+    onNavigateToQuickPick: () -> Unit = {},
+    onNavigateToSettings: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -86,17 +89,17 @@ fun HomeScreen(
                     color = PrimaryInk
                 )
             }
-            Box(
-                modifier = Modifier
-                    .background(SunnyYellow, shape = DesignTokens.PillShape)
-                    .border(DesignTokens.BorderStyle, shape = DesignTokens.PillShape)
-                    .padding(horizontal = 12.dp, vertical = 6.dp)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(
-                    text = "Ready to Shake!",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = PrimaryInk
-                )
+                IconButton(onClick = onNavigateToSettings) {
+                    Icon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = "Settings",
+                        tint = PrimaryInk
+                    )
+                }
             }
         }
 

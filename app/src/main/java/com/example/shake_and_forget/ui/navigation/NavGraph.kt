@@ -38,7 +38,8 @@ fun AppNavGraph(
             HomeScreen(
                 viewModel = homeViewModel,
                 onNavigateToShake = { navController.navigate(Screen.ShakeToDecide.route) },
-                onNavigateToQuickPick = { navController.navigate(Screen.QuickDecision.route) }
+                onNavigateToQuickPick = { navController.navigate(Screen.QuickDecision.route) },
+                onNavigateToSettings = { navController.navigate(Screen.Settings.route) }
             )
         }
         composable(Screen.QuickDecision.route) {

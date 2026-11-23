@@ -23,6 +23,7 @@ sealed class Screen(
     object ShakeToDecide : Screen("shake_to_decide", "Shake")
 
     companion object {
-        val bottomNavItems = listOf(Home, QuickDecision, MyLists, History, Settings)
+        val leftNavItems = listOf(Home, QuickDecision)
+        val rightNavItems = listOf(MyLists, History)
     }
 }

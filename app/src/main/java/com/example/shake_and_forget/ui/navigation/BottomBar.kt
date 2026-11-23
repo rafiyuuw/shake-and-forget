@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -22,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.example.shake_and_forget.ui.theme.ElectricGrape
 import com.example.shake_and_forget.ui.theme.PureWhite
@@ -32,6 +36,8 @@ fun CustomBottomNavigationBar(
     currentRoute: String?,
     onNavigate: (Screen) -> Unit
 ) {
+    val haptic = LocalHapticFeedback.current
+
     Box(
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.BottomCenter
@@ -48,28 +54,61 @@ fun CustomBottomNavigationBar(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
-                horizontalArrangement = Arrangement.SpaceAround,
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Screen.bottomNavItems.forEach { screen ->
-                    val isSelected = currentRoute == screen.route
-                    IconButton(
-                        onClick = { onNavigate(screen) },
-                        modifier = Modifier
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(
-                                if (isSelected) ElectricGrape else Color.Transparent
-                            )
-                            .padding(horizontal = 12.dp, vertical = 6.dp)
-                    ) {
-                        screen.icon?.let { iconVector ->
-                            Icon(
-                                imageVector = iconVector,
-                                contentDescription = screen.title,
-                                tint = if (isSelected) PureWhite else SecondaryInk,
-                                modifier = Modifier.size(24.dp)
-                            )
+                // Left Tabs (Home, Quick Pick)
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Screen.leftNavItems.forEach { screen ->
+                        val isSelected = currentRoute == screen.route
+                        IconButton(
+                            onClick = {
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                onNavigate(screen)
+                            },
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(if (isSelected) ElectricGrape else Color.Transparent)
+                                .padding(horizontal = 12.dp, vertical = 6.dp)
+                        ) {
+                            screen.icon?.let { iconVector ->
+                                Icon(
+                                    imageVector = iconVector,
+                                    contentDescription = screen.title,
+                                    tint = if (isSelected) PureWhite else SecondaryInk,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Center gap space for floating FAB
+                Spacer(modifier = Modifier.width(56.dp))
+
+                // Right Tabs (My Lists, History / Settings)
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    Screen.rightNavItems.forEach { screen ->
+                        val isSelected = currentRoute == screen.route
+                        IconButton(
+                            onClick = {
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                onNavigate(screen)
+                            },
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(if (isSelected) ElectricGrape else Color.Transparent)
+                                .padding(horizontal = 12.dp, vertical = 6.dp)
+                        ) {
+                            screen.icon?.let { iconVector ->
+                                Icon(
+                                    imageVector = iconVector,
+                                    contentDescription = screen.title,
+                                    tint = if (isSelected) PureWhite else SecondaryInk,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -78,23 +117,26 @@ fun CustomBottomNavigationBar(
 
         // Center Floating Shake Action Button
         Surface(
-            onClick = { onNavigate(Screen.ShakeToDecide) },
+            onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                onNavigate(Screen.ShakeToDecide)
+            },
             modifier = Modifier
                 .offset(y = (-24).dp)
-                .size(56.dp)
-                .shadow(elevation = 6.dp, shape = CircleShape),
+                .size(60.dp)
+                .shadow(elevation = 8.dp, shape = CircleShape),
             shape = CircleShape,
             color = ElectricGrape
         ) {
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.size(56.dp)
+                modifier = Modifier.size(60.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Vibration,
                     contentDescription = "Shake Now",
                     tint = PureWhite,
-                    modifier = Modifier.size(28.dp)
+                    modifier = Modifier.size(30.dp)
                 )
             }
         }
