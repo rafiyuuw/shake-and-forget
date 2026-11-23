@@ -7,6 +7,7 @@ import com.example.shake_and_forget.data.preferences.SettingsRepository
 import com.example.shake_and_forget.data.repository.DecisionRepository
 import com.example.shake_and_forget.sensor.GyroscopeTracker
 import com.example.shake_and_forget.sensor.ShakeDetector
+import com.example.shake_and_forget.ui.util.HapticAndSoundHelper
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,7 +32,8 @@ class ShakeDecisionViewModel(
     private val repository: DecisionRepository,
     private val settingsRepository: SettingsRepository,
     val shakeDetector: ShakeDetector,
-    val gyroscopeTracker: GyroscopeTracker
+    val gyroscopeTracker: GyroscopeTracker,
+    private val hapticHelper: HapticAndSoundHelper? = null
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(
@@ -42,6 +44,8 @@ class ShakeDecisionViewModel(
     )
     val uiState: StateFlow<ShakeDecisionUiState> = _uiState.asStateFlow()
 
+    private var soundEnabled = true
+    private var hapticEnabled = true
     private var shakeJob: Job? = null
 
     init {
@@ -57,6 +61,8 @@ class ShakeDecisionViewModel(
         viewModelScope.launch {
             settingsRepository.settingsFlow.collectLatest { settings ->
                 shakeDetector.thresholdGForce = settings.shakeSensitivityGForce
+                soundEnabled = settings.soundEnabled
+                hapticEnabled = settings.hapticEnabled
             }
         }
 
@@ -82,7 +88,10 @@ class ShakeDecisionViewModel(
                         } else {
                             (_uiState.value.highlightedOptionIndex - 1).coerceAtLeast(0)
                         }
-                        _uiState.value = _uiState.value.copy(highlightedOptionIndex = newIndex)
+                        if (newIndex != _uiState.value.highlightedOptionIndex) {
+                            hapticHelper?.playRollClick(soundEnabled, hapticEnabled)
+                            _uiState.value = _uiState.value.copy(highlightedOptionIndex = newIndex)
+                        }
                     }
                 }
             }
@@ -118,15 +127,18 @@ class ShakeDecisionViewModel(
         shakeJob = viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isShaking = true, decisionResult = null, isCommitted = false)
 
-            val totalSteps = 12
+            val totalSteps = 10
             for (i in 0 until totalSteps) {
-                delay(80L + i * 15L)
+                hapticHelper?.playRollClick(soundEnabled, hapticEnabled)
+                delay(70L + i * 12L)
                 val randomIndex = Random.nextInt(options.size)
                 _uiState.value = _uiState.value.copy(highlightedOptionIndex = randomIndex)
             }
 
             val finalIndex = Random.nextInt(options.size)
             val winner = options[finalIndex].title
+
+            hapticHelper?.playSuccessCelebration(soundEnabled, hapticEnabled)
 
             _uiState.value = _uiState.value.copy(
                 isShaking = false,

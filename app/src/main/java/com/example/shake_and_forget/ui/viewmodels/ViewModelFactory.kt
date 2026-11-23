@@ -8,6 +8,7 @@ import com.example.shake_and_forget.data.preferences.SettingsRepositoryImpl
 import com.example.shake_and_forget.data.repository.DecisionRepositoryImpl
 import com.example.shake_and_forget.sensor.GyroscopeTracker
 import com.example.shake_and_forget.sensor.ShakeDetector
+import com.example.shake_and_forget.ui.util.HapticAndSoundHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -27,6 +28,7 @@ class ViewModelFactory(
 
     private val shakeDetector = ShakeDetector(context)
     private val gyroscopeTracker = GyroscopeTracker(context)
+    private val hapticHelper = HapticAndSoundHelper(context)
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -45,7 +47,8 @@ class ViewModelFactory(
                     repository = decisionRepository,
                     settingsRepository = settingsRepository,
                     shakeDetector = shakeDetector,
-                    gyroscopeTracker = gyroscopeTracker
+                    gyroscopeTracker = gyroscopeTracker,
+                    hapticHelper = hapticHelper
                 ) as T
             }
             modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {

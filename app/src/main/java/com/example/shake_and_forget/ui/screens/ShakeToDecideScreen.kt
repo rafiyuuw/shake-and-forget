@@ -39,6 +39,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.shake_and_forget.ui.components.ConfettiEffect
@@ -58,6 +60,7 @@ fun ShakeToDecideScreen(
     viewModel: ShakeDecisionViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val haptic = LocalHapticFeedback.current
 
     DisposableEffect(Unit) {
         viewModel.startSensors()
@@ -98,7 +101,10 @@ fun ShakeToDecideScreen(
                                 shape = DesignTokens.PillShape
                             )
                             .border(DesignTokens.BorderStyle, shape = DesignTokens.PillShape)
-                            .clickable { viewModel.selectDecisionSet(setDetails.decisionSet.id) }
+                            .clickable {
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                viewModel.selectDecisionSet(setDetails.decisionSet.id)
+                            }
                             .padding(horizontal = 16.dp, vertical = 10.dp)
                     ) {
                         Text(
@@ -110,7 +116,7 @@ fun ShakeToDecideScreen(
                 }
             }
 
-            // Active Options Tiles (with Gyroscope Tilt Highlight)
+            // Active Options Tiles (with Gyroscope Tilt Highlight & Click Vibration)
             uiState.selectedSet?.let { currentSet ->
                 Text(
                     text = "Tilt or Shake to Select (${currentSet.options.size} Options)",
@@ -124,6 +130,9 @@ fun ShakeToDecideScreen(
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .clickable {
+                                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                }
                                 .shadow(if (isHighlighted) 8.dp else 2.dp, DesignTokens.CardShape),
                             shape = DesignTokens.CardShape,
                             colors = CardDefaults.cardColors(
@@ -197,7 +206,10 @@ fun ShakeToDecideScreen(
                     )
 
                     Button(
-                        onClick = { viewModel.triggerShakeRoll() },
+                        onClick = {
+                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            viewModel.triggerShakeRoll()
+                        },
                         enabled = !uiState.isShaking && uiState.selectedSet != null,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -256,7 +268,10 @@ fun ShakeToDecideScreen(
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
                                 Button(
-                                    onClick = { viewModel.triggerShakeRoll() },
+                                    onClick = {
+                                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                        viewModel.triggerShakeRoll()
+                                    },
                                     modifier = Modifier.weight(1f),
                                     shape = DesignTokens.PillShape,
                                     colors = ButtonDefaults.buttonColors(containerColor = CoralPink, contentColor = PureWhite)
@@ -265,7 +280,10 @@ fun ShakeToDecideScreen(
                                 }
 
                                 Button(
-                                    onClick = { viewModel.commitDecision() },
+                                    onClick = {
+                                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                                        viewModel.commitDecision()
+                                    },
                                     enabled = !uiState.isCommitted,
                                     modifier = Modifier.weight(1f),
                                     shape = DesignTokens.PillShape,
