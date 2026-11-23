@@ -59,7 +59,10 @@ fun AppNavGraph(
         }
         composable(Screen.Settings.route) {
             val settingsViewModel: SettingsViewModel = viewModel(factory = viewModelFactory)
-            SettingsScreen(viewModel = settingsViewModel)
+            SettingsScreen(
+                viewModel = settingsViewModel,
+                onNavigateBack = { navController.popBackStack() }
+            )
         }
         composable(Screen.ShakeToDecide.route) {
             val shakeViewModel: ShakeDecisionViewModel = viewModel(factory = viewModelFactory)
